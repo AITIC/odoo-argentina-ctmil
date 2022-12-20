@@ -1,5 +1,8 @@
 # Odoo Argentina
-Migración de la Localización Argentina para Odoo Community versión 13. También funcionaría con la versión Enterprise de Odoo.
+
+NOTA: Estado BETA
+
+Migración de la Localización Argentina para Odoo Community versión 16. También funcionaría con la versión Enterprise de Odoo.
 No funciona con versiones anteriores.
 
 Comprende las siguientes funcionalidades:
