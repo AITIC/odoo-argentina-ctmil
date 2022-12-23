@@ -20,7 +20,14 @@ class AfipwsConnection(models.Model):
             ('wsfex', 'Exportación -con detalle- RG2758 (WSFEXv1)'),
             ('wsbfe', 'Bono Fiscal -con detalle- RG2557 (WSBFE)'),
             ('wscdc', 'Constatación de Comprobantes (WSCDC)'),
-        ])
+        ],
+        ondelete={"wsfe": "cascade",
+                  "wsmtxca": "cascade",
+                  "wsfex": "cascade",
+                  "wsbfe": "cascade",
+                  "wscdc": "cascade",
+                  }
+    )
 
     @api.model
     def _get_ws(self, afip_ws):
