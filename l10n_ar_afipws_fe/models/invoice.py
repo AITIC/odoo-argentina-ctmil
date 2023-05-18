@@ -107,6 +107,11 @@ class AccountInvoice(models.Model):
         'Validation Type',
         compute='_compute_validation_type',
     )
+    l10n_ar_fce_transmission_type = fields.Selection(
+        [('SCA', 'SCA - TRANSFERENCIA AL SISTEMA DE CIRCULACION ABIERTA'),
+         ('ADC', 'ADC - AGENTE DE DEPOSITO COLECTIVO')],
+        'FCE: Transmission Option Default',
+        help='Default value for "FCE: Transmission Option" on electronic invoices')
 
     @api.depends('journal_id', 'afip_auth_code')
     def _compute_validation_type(self):
@@ -512,6 +517,10 @@ print "Observaciones:", wscdc.Obs
                     ws.AgregarOpcional(
                         opcional_id=2101,
                         valor=inv.partner_bank_id.cbu)
+                    if inv.l10n_ar_fce_transmission_type:
+                        ws.AgregarOpcional(
+                            opcional_id=27,
+                            valor=inv.l10n_ar_fce_transmission_type)
             # elif afip_ws == 'wsmtxca':
             #     obs_generales = inv.comment
             #     ws.CrearFactura(
