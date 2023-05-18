@@ -110,7 +110,8 @@ class AccountInvoice(models.Model):
     l10n_ar_fce_transmission_type = fields.Selection(
         [('SCA', 'SCA - TRANSFERENCIA AL SISTEMA DE CIRCULACION ABIERTA'),
          ('ADC', 'ADC - AGENTE DE DEPOSITO COLECTIVO')],
-        'FCE: Transmission Option Default',
+        readonly=True,
+        states={'draft': [('readonly', False)]},
         help='Default value for "FCE: Transmission Option" on electronic invoices')
 
     @api.depends('journal_id', 'afip_auth_code')
